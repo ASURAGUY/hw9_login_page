@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   var _num = 0;
   var _empty = 6;
+  var _password = '';
 
   void _showOkDialog(BuildContext context, String title, String content) {
     showDialog(
@@ -106,7 +107,7 @@ class HomePage extends StatelessWidget {
                                     shape: BoxShape.circle,
                                   ),
                                 ),
-                              for (var i = 0; i < _empty ; i--) //ยังไม่กดรหัส
+                              for (var i = 0; i < _empty ; i++) //ยังไม่กดรหัส
                                 Container(
                                   width: 20.0,
                                   height: 20.0,
@@ -138,52 +139,35 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  for (var i = 1; i <= 3; i++) buildButton(i),
-                                ],
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 30,),
+                                child: Container(
+                                ),
                               ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  for (var i = 4; i <= 6; i++) buildButton(i),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 25, right: 25,),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Container(
+                                        child: buildButton(0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  for (var i = 7; i <= 9; i++) buildButton(i),
-                                ],
+                              Container(
+                                child: Icon(
+                                    Icons.backspace,
+                                    size: 30.0,
+                                    color: Colors.white
+                                ),
                               ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  buildButton(0),
-                                  buildButton(-1),
-
-                                ],
-                              ),
-                            ),
-                          ],
+                            ]
                         ),
                         Padding(
                           padding: const EdgeInsets.all(30.0),
@@ -214,12 +198,16 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0, right: 1.0),
       child: OutlinedButton(
           onPressed: () {
+            setState((){
+              if(_num<=5) {
+                _empty--;
+                _num++;
+                _password+='$num';
+              }
 
+            });
           },
-          child: (num == -1)
-              ? Icon(Icons.backspace, color: Colors.white,)
-              : Text(
-              '$num')),
+      ),
     );
   }
 }
