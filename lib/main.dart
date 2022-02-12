@@ -198,16 +198,16 @@ class HomePage extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0, right: 1.0),
       child: OutlinedButton(
           onPressed: () {
-            setState((){
+            setState ((){
               if(_num<=5) {
                 _empty--;
                 _num++;
                 _password+='$num';
               }
-
             });
           },
-      ),
-    );
+
+      )
+     );
   }
 }
